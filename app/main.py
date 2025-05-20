@@ -1,8 +1,7 @@
 import streamlit as st 
 import pandas as pd
 import utils  
-#import plotly.figure_factory as ff
-# Load data (ensure CSVs are local and included in .gitignore)
+
 df = pd.read_csv('../data/merged_country_file.csv')
 print("Columns in the DataFrame:", df.columns.tolist())
 df.columns = df.columns.str.strip().str.lower()
