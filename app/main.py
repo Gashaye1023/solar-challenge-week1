@@ -1,6 +1,6 @@
-import streamlit as st # type: ignore
+import streamlit as st 
 import pandas as pd
-import utils  # Assuming utils.py contains your data processing functions
+import utils  
 
 # Load data (ensure CSVs are local and included in .gitignore)
 df = pd.read_csv('data/merged_country_file.csv')
@@ -20,6 +20,9 @@ st.subheader("Global Horizontal Irradiance (GHI)")
 st.box_chart(filtered_data['GHI'])
 
 # Top Regions Table
+# Top Regions Table with Counts
 st.subheader("Top Regions")
-top_regions = filtered_data.nlargest(10, 'value_column')  # Replace 'value_column' with actual metric
-st.dataframe(top_regions[['region', 'value_column']])
+top_regions = filtered_data['country'].value_counts().nlargest(10).reset_index()
+top_regions.columns = ['country', 'count']
+# Display the counts
+st.dataframe(top_regions)
